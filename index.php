@@ -16,7 +16,7 @@ inlcuirTemplate("header");
                 <label for="contraseña">Contraseña</label>
                 <input type="password" name="contraseña" placeholder="Tu contraseña" id="contraseña" required>
             </fieldset>
-            <input type="submit" value="Iniciar Sesión" class="boton boton-verde">
+            <input type="submit" value="Iniciar Sesión" class="boton boton-azul">
         </form>
     </main>
 
