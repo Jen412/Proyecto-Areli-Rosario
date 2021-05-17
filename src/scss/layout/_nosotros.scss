@@ -1,0 +1,23 @@
+.nosotrosCon{
+    display: block;
+    img{    
+        width: 100%;
+    }
+    @include tablet{
+        display: flex;
+        justify-content: space-between;
+        gap: 5rem;
+        align-items: center;
+        img{
+            width: 50rem;
+        }
+    }
+}
+.nosotros{
+    blockquote{
+        font-size: 2.5rem;
+        font-weight: 700;
+    }    
+}
+
+ 
