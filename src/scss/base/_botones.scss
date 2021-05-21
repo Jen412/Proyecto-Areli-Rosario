@@ -18,3 +18,7 @@
 .boton-azul-block{
     @include boton($azul, block);
 }
+
+.boton-azul-m{
+    @include boton($azulM, inline-block);
+}

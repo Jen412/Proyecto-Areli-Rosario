@@ -14,3 +14,24 @@
         background-color: $azul;
     }
 }
+.admin{
+    @include grid(3,5rem);
+}
+
+table.casos{
+    margin-top: 4rem;
+    width: 100%;
+    border-spacing: 1;
+    thead{
+        background-color: $azul; 
+        th{
+            color: $blanco;
+            padding: 2rem;    
+        }
+    }
+    tbody{
+        td{
+            text-align: center;
+        }
+    }
+}
