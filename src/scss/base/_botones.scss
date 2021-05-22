@@ -22,3 +22,7 @@
 .boton-azul-m{
     @include boton($azulM, inline-block);
 }
+
+.boton-verde-block{
+    @include boton($verde, block);
+}

@@ -15,20 +15,23 @@ $resultado = mysqli_query($db, $query);
 inlcuirTemplate("header"); 
 ?>
     <main class="contenedor seccion">
-        <h1>Aministración</h1>
+        <h1>Administración</h1>
         <div class="contenedor admin">
             <div>
                 <a href="" class="boton-azul-m w-100">Casos</a>
             </div>
             <div>
-                <a href="" class="boton-azul-m w-100">Clientes</a>
+                <a href="/admin/Clientes/clientes.php" class="boton-azul-m w-100">Clientes</a>
             </div>
             <div>
                 <a href="" class="boton-azul-m w-100">Empleados</a>
             </div>
         </div>
 
-        <table class="casos">
+
+    </main>
+
+    <table class="casos">
             <thead>
                 <tr>
                     <th>Cliente</th>
@@ -54,6 +57,7 @@ inlcuirTemplate("header");
             </tbody>
 
         </table>
-    </main>
-
-<?php inlcuirTemplate("footer");   ?>
+<?php 
+    inlcuirTemplate("footer");   
+    mysqli_close($db);
+?>

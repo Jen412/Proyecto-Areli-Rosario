@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="build/css/app.css">
+    <link rel="stylesheet" href="/build/css/app.css">
     <title>Gestor Juridico</title>
 </head>
 <body>
@@ -22,7 +22,7 @@
     <div class="contenedor contenido-header">
         <div class="barra">
             <a href="/">
-                <img src="build/img/logo.jpeg" alt="Imagen Logo">
+                <img src="/build/img/logo.jpeg" alt="Imagen Logo">
             </a>
             <div class="derecha">
                 <nav class="navegacion">
