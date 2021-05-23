@@ -9,14 +9,14 @@
     inlcuirTemplate("header"); 
 
     $db = conectarDB();
-    $query ="SELECT Id_Clientes,  Nom, ApeP, ApeM, Ciudad, Estado, Calle, NumCasa, Colonia, Email, Telefono, Curp  FROM Clientes;";
+    $query ="CALL consultaClientes();";
     $resultado = mysqli_query($db, $query);
 ?>
 
 
     <main class="contenedor seccion">
         <h1>Clientes</h1>
-        <a href="crear.php" class="boton-azul">Agregar Cliente</a>
+        <a href="agregarCliente.php" class="boton-azul">Agregar Cliente</a>
     </main>
 
     <table class="clientes">

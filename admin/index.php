@@ -9,7 +9,7 @@ if (!$auth) {
 }
 
 $db = conectarDB();
-$query = "SELECT Juzgado, Estatus, Nom, ApeP, Apem, Costo, Materia, DiaR, MesR, AnioR FROM Caso JOIN Clientes on Caso.Id_Clientes = Clientes.Id_Clientes;";
+$query = "CALL consultaCasosXClientes();";
 $resultado = mysqli_query($db, $query);
 
 inlcuirTemplate("header"); 
