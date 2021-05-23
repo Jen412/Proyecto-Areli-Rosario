@@ -3,9 +3,8 @@ require '../../includes/funciones.php';
 inlcuirTemplate("header"); 
 ?>
     <main class="contenedor seccion">
-        <h1>Agregar Cliente</h1>
+        <h1>Actualizar Empleado</h1>
 
-        <a href="/admin/Clientes/clientes.php" class="boton boton-azul">Volver</a>
         <form action="POST" class="formulario">
             <Fieldset>
                 <Legend>Datos Principales</Legend>
@@ -79,20 +78,7 @@ inlcuirTemplate("header");
 
                 <label for="telefono">Telefono</label>
                 <input type="number" id="telefono" name="telefono" placeholder="Telefono del cliente" maxlength="10" minlength="10"> 
-            </Fieldset>
-
-            <fieldset>
-                <legend>Documentos</legend>
-                <label for="ine">INE</label>
-                <input type="file" name="ine" id="ine">
-
-                <label for="com">Comprobante de Domicilio</label>
-                <input type="file" name="com" id="com">
-
-                <label for="acta">Acta de Nacimiento</label>
-                <input type="file" name="acta" id="acta">                
-            </fieldset>
-            
+            </Fieldset>            
             <input type="submit" class="boton-azul">
         </form>
     </main>

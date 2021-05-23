@@ -16,7 +16,10 @@
 
     <main class="contenedor seccion">
         <h1>Clientes</h1>
-        <a href="agregarCliente.php" class="boton-azul">Agregar Cliente</a>
+        <div class="botones">
+            <a href="agregarCliente.php" class="boton-azul">Agregar Cliente</a>
+            <a href="/admin" class="boton-azul">Volver</a>
+        </div>
     </main>
 
     <table class="clientes">
@@ -48,8 +51,8 @@
                             <input type="hidden" name="id" value = "<?php echo $cliente['Id_Clientes'];?>">
                             <input type="submit" class="boton-rojo-block" value="Eliminar">
                         </form>
-                        <a href="admin/propiedades/actualizar.php?id=<?php echo $cliente['Id_Clientes'];?>" class="boton-verde-block" >Actualizar</a>
-                        <a href="admin/propiedades/documentos.php?id=<?php echo $cliente['Id_Clientes'];?>" class="boton-azul-block" >Documentos</a>
+                        <a href="/admin/Clientes/actualizarCliente.php?id=<?php echo $cliente['Id_Clientes'];?>" class="boton-verde-block" >Actualizar</a>
+                        <a href="/admin/propiedades/documentos.php?id=<?php echo $cliente['Id_Clientes'];?>" class="boton-azul-block" >Documentos</a>
                     </td>
                 </tr>
                 <?php endwhile;?>

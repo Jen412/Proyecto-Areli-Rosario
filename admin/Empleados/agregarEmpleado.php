@@ -3,9 +3,9 @@ require '../../includes/funciones.php';
 inlcuirTemplate("header"); 
 ?>
     <main class="contenedor seccion">
-        <h1>Agregar Cliente</h1>
+        <h1>Agregar Empleado</h1>
 
-        <a href="/admin/Clientes/clientes.php" class="boton boton-azul">Volver</a>
+        <a href="/admin/Empleados/empleados.php" class="boton boton-azul">Volver</a>
         <form action="POST" class="formulario">
             <Fieldset>
                 <Legend>Datos Principales</Legend>
@@ -20,7 +20,7 @@ inlcuirTemplate("header");
                 <input type="text" id="apellidoM" name="apellidoM" placeholder="Apellido Materno">
 
                 <label for="edad">Edad</label>
-                <input type="number" id="edad" name="edad" placeholder="Edad del cliente" min="18" max="100">
+                <input type="number" id="edad" name="edad" placeholder="Edad del empleado" min="18" max="100">
 
                 <label for="sexo">Sexo</label>
                 <select name="sexo" id="sexo">
@@ -30,10 +30,10 @@ inlcuirTemplate("header");
                 </select>
 
                 <label for="curp">CURP</label>
-                <input type="text" id="curp" name="curp" placeholder="CURP del cliente">
+                <input type="text" id="curp" name="curp" placeholder="CURP del empleado">
 
-                <label for="ocupacion">Ocupación</label>
-                <input type="text" id="ocupacion" name="ocupacion" placeholder="Ocupación del cliente ej: Arquitecto">
+                <label for="especialidad">Especialidad</label>
+                <input type="text" id="especialidad" name="especialidad" placeholder="Ocupación del empleado">
             </fieldset>
 
             <fieldset>
@@ -78,21 +78,8 @@ inlcuirTemplate("header");
                 <input type="email" id="email" name="email" placeholder="Email">
 
                 <label for="telefono">Telefono</label>
-                <input type="number" id="telefono" name="telefono" placeholder="Telefono del cliente" maxlength="10" minlength="10"> 
-            </Fieldset>
-
-            <fieldset>
-                <legend>Documentos</legend>
-                <label for="ine">INE</label>
-                <input type="file" name="ine" id="ine">
-
-                <label for="com">Comprobante de Domicilio</label>
-                <input type="file" name="com" id="com">
-
-                <label for="acta">Acta de Nacimiento</label>
-                <input type="file" name="acta" id="acta">                
-            </fieldset>
-            
+                <input type="number" id="telefono" name="telefono" placeholder="Telefono del empleado" maxlength="10" minlength="10"> 
+            </Fieldset> 
             <input type="submit" class="boton-azul">
         </form>
     </main>

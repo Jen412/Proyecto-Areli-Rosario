@@ -24,7 +24,7 @@ inlcuirTemplate("header");
                 <a href="/admin/Clientes/clientes.php" class="boton-azul-m w-100">Clientes</a>
             </div>
             <div>
-                <a href="" class="boton-azul-m w-100">Empleados</a>
+                <a href="/admin/Empleados/empleados.php" class="boton-azul-m w-100">Empleados</a>
             </div>
         </div>
 
