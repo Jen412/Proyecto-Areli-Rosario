@@ -1,6 +1,9 @@
 <?php 
-require '../../includes/funciones.php';
-inlcuirTemplate("header"); 
+    require '../../includes/funciones.php';
+    require '../../includes/config/database.php';
+    inlcuirTemplate("header"); 
+
+    
 ?>
     <main class="contenedor seccion">
         <h1>Actualizar Empleado</h1>

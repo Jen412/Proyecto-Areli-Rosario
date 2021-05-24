@@ -8,17 +8,19 @@ if (!$auth) {
     header('location: /');
 }
 
+inlcuirTemplate("header"); 
+
 $db = conectarDB();
 $query = "CALL consultaCasosXClientes();";
 $resultado = mysqli_query($db, $query);
 
-inlcuirTemplate("header"); 
+
 ?>
     <main class="contenedor seccion">
         <h1>Administración</h1>
         <div class="contenedor admin">
             <div>
-                <a href="" class="boton-azul-m w-100">Casos</a>
+                <a href="/admin/Casos/casos.php" class="boton-azul-m w-100">Casos</a>
             </div>
             <div>
                 <a href="/admin/Clientes/clientes.php" class="boton-azul-m w-100">Clientes</a>

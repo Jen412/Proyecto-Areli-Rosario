@@ -51,7 +51,6 @@
                         <input type="submit" class="boton-rojo-block" value="Eliminar">
                     </form>
                     <a href="/admin/Empleados/actualizarEmpleados.php?id=<?php echo $empleado['Id_NoEmpleado'];?>" class="boton-verde-block" >Actualizar</a>
-                    <a href="/admin/propiedades/documentos.php?id=<?php echo $empleado['Id_NoEmpleado'];?>" class="boton-azul-block" >Documentos</a>
                 </td>
             </tr>
             <?php endwhile;?>
