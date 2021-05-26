@@ -9,7 +9,7 @@
     inlcuirTemplate("header"); 
 
     $db = conectarDB();
-    $query ="SELECT Id_NoEmpleado, Nom, ApeP, ApeM ,Ciudad, Estado, Calle, Telefono, NumCasa, Curp, Especialidad, Colonia FROM Empleados;";
+    $query ="CALL consEmpleados();";
     $resultado = mysqli_query($db, $query);
 ?>
 

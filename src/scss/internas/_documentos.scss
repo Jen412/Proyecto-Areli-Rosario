@@ -1,0 +1,17 @@
+table.documentos{
+    margin-top: 2rem;
+    width: 100%;
+    border-spacing: 3;
+    thead{
+        background-color: $verde;
+        th{
+            color: $blanco;
+            padding: 1.8rem;
+        }
+    }
+    tbody{
+        td{
+            text-align: center;
+        }
+    }
+}

@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST') {
 
     if (empty($errores)) {
         //revisar si el usuario existe
-        $query = "SELECT * FROM usuarios WHERE email= '${email}' ";
+        $query = "CALL consultaUsuarios('$email'); ";
         $resultado = mysqli_query($db, $query);
         if ($resultado->num_rows) {
             //revisar el password

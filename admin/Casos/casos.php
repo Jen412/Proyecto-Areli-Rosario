@@ -9,18 +9,18 @@
     inlcuirTemplate("header"); 
 
     $db = conectarDB();
-    $query ='SELECT Id_NoExpediente ,Clientes.Nom, Clientes.ApeP, empleados.Nom as NomE, empleados.ApeP as ApePE, Juzgado, Materia, Costo, AnioR, DiaR, MesR FROM Casos JOIN Clientes ON Clientes.Id_Clientes=Casos.Id_Clientes JOIN empleados ON casos.Id_NoEmpleado=empleados.Id_NoEmpleado WHERE Estatus = "Activo";';
+    $query ='CALL consultaCasos("Activo");';
     $resultadoA = mysqli_query($db, $query);
-    $query ='SELECT Id_NoExpediente ,Clientes.Nom, Clientes.ApeP, empleados.Nom as NomE, empleados.ApeP as ApePE, Juzgado, Materia, Costo, AnioR, DiaR, MesR FROM Casos JOIN Clientes ON Clientes.Id_Clientes=Casos.Id_Clientes JOIN empleados ON casos.Id_NoEmpleado=empleados.Id_NoEmpleado WHERE Estatus = "Archivado";';
-    $resultadoAr = mysqli_query($db, $query);
+    $query ='CALL consultaCasos("Archivado");';
+    $db = conectarDB();
+    $resultadoAr = mysqli_query($db, $query); 
 ?>
-
 
     <main class="contenedor seccion">
         <h1>Casos</h1>
         <div class="acciones-casos">
             <a href="/admin" class="boton-azul">Volver</a>
-            <a href="" class="boton-azul">Consulta Individual</a>
+            <a href="consultaIndividual.php" class="boton-azul">Consulta Individual</a>
             <a href="agregarCaso.php" class="boton-azul">Agregar Caso</a>
         </div>
     </main>
@@ -54,7 +54,7 @@
                         <input type="submit" class="boton-rojo-block" value="Archivar">
                     </form>
                     <a href="/admin/Clientes/actualizarCliente.php?id=<?php echo $caso['Id_NoExpediente'];?>" class="boton-verde-block" >Actualizar</a>
-                    <a href="/admin/propiedades/documentos.php?id=<?php echo $caso['Id_NoExpediente'];?>" class="boton-azul-block" >Documentos</a>
+                    <a href="/admin/Casos/documentosCaso.php?id=<?php echo $caso['Id_NoExpediente'];?>" class="boton-azul-block" >Documentos</a>
                 </td>
             </tr>
             <?php endwhile;?>
@@ -90,7 +90,7 @@
                         <input type="submit" class="boton-rojo-block" value="Eliminar">
                     </form>
                     <a href="/admin/Clientes/actualizarCliente.php?id=<?php echo $caso['Id_NoExpediente'];?>" class="boton-verde-block" >Activar Caso</a>
-                    <a href="/admin/propiedades/documentos.php?id=<?php echo $caso['Id_NoExpediente'];?>" class="boton-azul-block" >Documentos</a>
+                    <a href="/admin/Casos/documentosCaso.php?id=<?php echo $caso['Id_NoExpediente'];?>" class="boton-azul-block" >Documentos</a>
                 </td>
             </tr>
             <?php endwhile;?>
