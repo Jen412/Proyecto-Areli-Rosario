@@ -6,16 +6,17 @@
         header('location: /');
     }
     inlcuirTemplate("header"); 
+    //obtiene el id de la URL
     $id = $_GET['id'];
     $id = filter_var($id, FILTER_VALIDATE_INT);
-
+    //si id lo cambian regresa 
     if (!$id) {
-        header('Location: /admin');
+        header('Location: /admin/Clientes');
     }
     //Conexion de Base de Datos
     $db= conectarDB();    
     //Consulta para obtener Clientes
-    $query ="SELECT * FROM Clientes WHERE Id_Clientes = '$id'";
+    $query ="CALL consultaCli('$id')";
     $resultado = mysqli_query($db, $query);
     $cliente= mysqli_fetch_assoc($resultado);
 
@@ -108,16 +109,75 @@
             $errores[] = "Telefono Obligatorio";
         }
 
-        if (!$acta['name']) {
-            $errores[] = "Acta de Nacimiento Obligatoria";
-        }
+        //Ejecutar actualizar mientras no tenga errores
+        if (empty($errores)) {
+            $query = "CALL consultaDocCliente('$id');";
+            $db = conectarDB();
+            $resultado = mysqli_query($db, $query);
+            $docs = mysqli_fetch_assoc($resultado);
 
-        if (!$ine['name']) {
-            $errores[] = "INE Obligatorio";
-        }
+            $carpetaDocumentos = '../../DocumentosCliente/';
+            if (!is_dir($carpetaDocumentos)) {
+                mkdir($carpetaDocumentos);
+            }
 
-        if (!$com['name']) {
-            $errores[] = "Comprobante de Domicilio Obligatorio";
+            $nombreIne = "";
+            $nombreActa = "";
+            $nombreCom = "";
+
+            
+            if ($ine['name']) {
+                //Elimina el archivo de la Carpeta
+                unlink($carpetaDocumentos.$docs['Doc_INE']);
+                //agrega el nuevo nombre del archivo
+                $nombreIne = $ine['name'];
+                //agrega el nuevo archivo
+                move_uploaded_file($ine['tmp_name'], $carpetaDocumentos . $nombreIne);
+            }
+            else{
+                $nombreIne =$docs['Doc_INE'];
+            }
+            
+            if ($com['name']) {
+                //Elimina el archivo de la Carpeta
+                unlink($carpetaDocumentos.$docs['Doc_ComDom']);
+                //agrega el nuevo nombre del archivo
+                $nombreCom = $com['name'];
+                //agrega el nuevo archivo
+                move_uploaded_file($com['tmp_name'], $carpetaDocumentos . $nombreCom);
+            }
+            else {
+                $nombreCom =$docs['Doc_ComDom'];
+            }
+
+            if ($acta['name']) {
+                //Elimina el archivo de la Carpeta
+                unlink($carpetaDocumentos.$docs['Doc_ActaN']);
+                //agrega el nuevo nombre del archivo
+                $nombreActa = $acta['name'];
+                //agrega el nuevo archivo
+                move_uploaded_file($acta['tmp_name'], $carpetaDocumentos . $nombreActa);
+            }
+            else{
+                $nombreActa = $docs['Doc_ActaN'];
+            }
+
+            //Actualiza la base de datos
+            //Actualiza tabla clientes
+            $db = conectarDB();
+            $query = "CALL modificarClientes('$nombre', '$apeP', '$apeM', '$ciudad', '$estado','$calle', '$numCasa', '$colonia', '$email',
+            '$telefono', '$edad', '$curp','$ocupacion', '$sexo', '$dia', '$mes', '$anio', '$id');";
+            $resultado = mysqli_query($db, $query);
+            //Actualiza tabla docClientes
+            $db = conectarDB();
+            $idDoc = $docs['Id_DocCliente'];
+            $query = "CALL modificarDocClientes('$idDoc','$nombreCom','$nombreIne','$nombreActa');";
+            $resultado =mysqli_query($db, $query);
+
+            if ($resultado) {
+                //redireccionando al usuario
+                header('Location: /admin/Clientes/clientes.php?resultado=2');
+            }
         }
     }
 

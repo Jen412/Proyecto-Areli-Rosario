@@ -2,6 +2,8 @@
     require '../../includes/funciones.php';
     require '../../includes/config/database.php';
 
+    $resultadoAccion = $_GET['resultado'] ?? null;
+
     $auth = estaAutenticado();
     if (!$auth) {
         header('location: /');
@@ -11,11 +13,51 @@
     $db = conectarDB();
     $query ="CALL consultaClientes();";
     $resultado = mysqli_query($db, $query);
-?>
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id = $_POST['id'];
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+    
+        if($id){
+            //consulta el id de Doc cliente
+            $db = conectarDB();
+            $query="call consultaDocCliente('$id')";
+            $resultadoE= mysqli_query($db, $query);
+            $doc = mysqli_fetch_assoc($resultadoE);
+            $idDoc = $doc['Id_DocCliente'];
+            //Elimina Doc cliente
+            $db = conectarDB();
+            $query="call eliminarDocCliente('$idDoc')";
+            $resultadoE= mysqli_query($db, $query);
+            $carpetaDocumentos = '../../DocumentosCliente/';
+            //elimina archivos de la raiz
+            unlink($carpetaDocumentos.$doc['Doc_ComDom']);
+            unlink($carpetaDocumentos.$doc['Doc_ActaN']);
+            unlink($carpetaDocumentos.$doc['Doc_INE']);
+
+            //Elimina Cliente
+            $db = conectarDB();
+            $query = "CALL eliminarCliente('$id');";
+            $resultadoE = mysqli_query($db, $query);
+            var_dump($resultadoE);
+            exit;
+            if ($resultadoE) {
+                header('location: /admin/Clientes/Clientes.php?resultado=3');
+            }
+        }
+    }
+?>
 
     <main class="contenedor seccion">
         <h1>Clientes</h1>
+        <?php if (intval($resultadoAccion) === 1): ?>
+            <p class="alerta exito">Cliente Agregado Correctamente</p>
+        <?php elseif (intval($resultadoAccion) === 2):?>
+            <p class="alerta exito">Datos del Cliente Actualizados Correctamente</p>
+        <?php elseif (intval($resultadoAccion) === 3):?>
+            <p class="alerta exito">Cliente Eliminado Correctamente</p>    
+        <?php endif;?>
+
         <div class="botones">
             <a href="agregarCliente.php" class="boton-azul">Agregar Cliente</a>
             <a href="/admin" class="boton-azul">Volver</a>

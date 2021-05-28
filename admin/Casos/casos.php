@@ -2,6 +2,8 @@
     require '../../includes/funciones.php';
     require '../../includes/config/database.php';
 
+    $resultadoAccion = $_GET['resultado'] ?? null;
+
     $auth = estaAutenticado();
     if (!$auth) {
         header('location: /');
@@ -14,10 +16,62 @@
     $query ='CALL consultaCasos("Archivado");';
     $db = conectarDB();
     $resultadoAr = mysqli_query($db, $query); 
+
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id = $_POST['id'];
+        $act = $_POST['act'];
+        $act2 = $_POST['act2'];
+        $act3= $_POST['act3'];
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        $act = filter_var($id, FILTER_VALIDATE_INT);
+    
+        if($id && $act){
+            //Archiva Caso
+            $db = conectarDB();
+            $query = "CALL archivarCaso('$id')";
+            $resultado = mysqli_query($db, $query);
+            if ($resultado) {
+                header('location: /admin/Casos/casos.php?resultado=3');
+            }
+        }
+        if ($id && $act2) {
+            //Archiva Caso
+            $db = conectarDB();
+            $query = "CALL eliminarCaso('$id')";
+            $resultado = mysqli_query($db, $query);
+            if ($resultado) {
+                header('location: /admin/Casos/casos.php?resultado=4');
+            }
+        }
+
+        if ($id && $act3) {
+            //Archiva Caso
+            $db = conectarDB();
+            $query = "CALL activarCaso('$id')";
+            $resultado = mysqli_query($db, $query);
+            if ($resultado) {
+                header('location: /admin/Casos/casos.php?resultado=5');
+            }
+        }
+    }
 ?>
 
     <main class="contenedor seccion">
         <h1>Casos</h1>
+
+        <?php if (intval($resultadoAccion) === 1): ?>
+            <p class="alerta exito">Caso Agregado Correctamente</p>
+        <?php elseif (intval($resultadoAccion) === 2):?>
+            <p class="alerta exito">Datos del Caso Actualizados Correctamente</p>
+        <?php elseif (intval($resultadoAccion) === 3):?>
+            <p class="alerta exito">Caso Archivado Correctamente</p>     
+        <?php elseif (intval($resultadoAccion) === 4):?>    
+            <p class="alerta exito">Caso Eliminado Correctamente</p>
+        <?php elseif (intval($resultadoAccion) === 5):?>    
+            <p class="alerta exito">Caso Activado Correctamente</p>
+        <?php endif;?>
+
         <div class="acciones-casos">
             <a href="/admin" class="boton-azul">Volver</a>
             <a href="consultaIndividual.php" class="boton-azul">Consulta Individual</a>
@@ -51,9 +105,10 @@
                 <td>
                     <form action="" method="POST" class="w-100">
                         <input type="hidden" name="id" value = "<?php echo $caso['Id_NoExpediente'];?>">
+                        <input type="hidden" name="act"value = "1">
                         <input type="submit" class="boton-rojo-block" value="Archivar">
                     </form>
-                    <a href="/admin/Clientes/actualizarCliente.php?id=<?php echo $caso['Id_NoExpediente'];?>" class="boton-verde-block" >Actualizar</a>
+                    <a href="/admin/Casos/actualizarCaso.php?id=<?php echo $caso['Id_NoExpediente'];?>" class="boton-verde-block" >Actualizar</a>
                     <a href="/admin/Casos/documentosCaso.php?id=<?php echo $caso['Id_NoExpediente'];?>" class="boton-azul-block" >Documentos</a>
                 </td>
             </tr>
@@ -87,9 +142,14 @@
                 <td>
                     <form action="" method="POST" class="w-100">
                         <input type="hidden" name="id" value = "<?php echo $caso['Id_NoExpediente'];?>">
+                        <input type="hidden" name="act2"value = "2">
                         <input type="submit" class="boton-rojo-block" value="Eliminar">
                     </form>
-                    <a href="/admin/Clientes/actualizarCliente.php?id=<?php echo $caso['Id_NoExpediente'];?>" class="boton-verde-block" >Activar Caso</a>
+                    <form action="" method="POST" class="w-100">
+                        <input type="hidden" name="id" value = "<?php echo $caso['Id_NoExpediente'];?>">
+                        <input type="hidden" name="act3"value = "1">
+                        <input type="submit" class="boton-verde-block" value="Activar Caso">
+                    </form>
                     <a href="/admin/Casos/documentosCaso.php?id=<?php echo $caso['Id_NoExpediente'];?>" class="boton-azul-block" >Documentos</a>
                 </td>
             </tr>

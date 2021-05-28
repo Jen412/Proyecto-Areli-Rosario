@@ -7,25 +7,44 @@
         header('location: /');
     }
     inlcuirTemplate("header"); 
+    //Conexion a la base de datos
     $db = conectarDB();
+    //Crear Query para consultar clientes
     $query = "CALL consultaClientes();";
+    //Resultado de la consulta
     $resultadoC=mysqli_query($db,$query);
+    //Conexion a la base de datos
     $db = conectarDB();
+    //Crear Query para consultar
     $query = "CALL consultaEmpleados();";
+    //Resultado de la consulta
     $resultadoE=mysqli_query($db,$query);
+    //obtiene el id de la URL
+    $id = $_GET['id'];
+    $id = filter_var($id, FILTER_VALIDATE_INT);
+    //si id lo cambian regresa 
+    if (!$id) {
+        header('Location: /admin/Empleados');
+    }
+    //Conexion a la base de datos de nuevo
+    $db = conectarDB();
+    //consulta para obtener datos del caso
+    $query ="CALL consultaCasoAct('$id')";
+    $resultado = mysqli_query($db, $query);
+    $caso = mysqli_fetch_assoc($resultado);
 
     //Posibles errores
     $errores =[];
 
-    $juzgado ='';
-    $estatus = 'Activo';
-    $materia = '';
-    $costo = '';
-    $dia = ''; 
-    $mes='';
-    $anio='';
-    $clienteId ='';
-    $empleadoId ='';
+    $juzgado = $caso['Juzgado'];
+    $estatus = $caso['Estatus'];
+    $materia = $caso['Materia'];
+    $costo = $caso['Costo'];
+    $dia = $caso['DiaR']; 
+    $mes = $caso['MesR'];
+    $anio = $caso['AnioR'];
+    $clienteId = $caso['Id_Clientes'];
+    $empleadoId = $caso['Id_NoEmpleado'];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $juzgado =mysqli_real_escape_string($db, $_POST['juzgado']);
@@ -62,20 +81,20 @@
         }
 
         if (empty($errores)) {
-            $query = "CALL agregarCaso('$juzgado', '$estatus', '$materia', '$costo', '$dia', '$mes', '$anio', '$clienteId', '$empleadoId');";
+            $query = "CALL modificarCaso('$id', '$juzgado', '$estatus', '$materia', '$costo', '$dia', '$mes', '$anio', '$clienteId', '$empleadoId');";
             $db = conectarDB();
             $resultado = mysqli_query($db, $query);
 
             if ($resultado) {
                 //redireccionando al usuario
-                header('Location: /admin/Casos/casos.php?resultado=1');
+                header('Location: /admin/Casos/casos.php?resultado=2');
             }
         }
     }
 
 ?>
     <main class="contenedor seccion">
-        <h1>Agregar Caso</h1>
+        <h1>Actualizar Caso</h1>
 
         <a href="/admin/Casos/casos.php" class="boton boton-azul">Volver</a>
         <?php foreach($errores as $error): ?>

@@ -37,7 +37,7 @@ function crearSelectMes(){
 function crearSelectAnio(){
     const select = document.querySelector('#anio');
     const inp = document.querySelector('#anioR');
-    for (let i = 1940; i < 2021; i++) {
+    for (let i = 1940; i < 2025; i++) {
         const option = document.createElement('option');
         option.value = i;
         option.text = i;

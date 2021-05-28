@@ -131,10 +131,11 @@
             $id = $resultado['Id_Clientes'];
             $db = conectarDB();
             $query ="CALL agregarDocClientes('$nombreCom','$nombreIne','$nombreActa','$id');";
+            $resultado = mysqli_query($db,$query);
             
             if ($resultado) {
             //redireccionando al usuario
-                header('Location: /admin/Clientes?resultado=1');
+                header('Location: /admin/Clientes/clientes.php?resultado=1');
             }
         }
     }
