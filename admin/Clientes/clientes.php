@@ -94,7 +94,7 @@
                             <input type="submit" class="boton-rojo-block" value="Eliminar">
                         </form>
                         <a href="/admin/Clientes/actualizarCliente.php?id=<?php echo $cliente['Id_Clientes'];?>" class="boton-verde-block" >Actualizar</a>
-                        <a href="/admin/propiedades/documentos.php?id=<?php echo $cliente['Id_Clientes'];?>" class="boton-azul-block" >Documentos</a>
+                        <a href="/admin/Clientes/documentosCliente.php?id=<?php echo $cliente['Id_Clientes'];?>" class="boton-azul-block" >Documentos</a>
                     </td>
                 </tr>
                 <?php endwhile;?>
