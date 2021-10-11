@@ -30,3 +30,23 @@
 .boton-verde-block{
     @include boton($verde, block);
 }
+
+ion-icon{
+   font-size: 5rem;
+}    
+
+ion-icon.size3{
+    font-size: 3rem;
+}
+.icono{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 1rem;
+}
+
+.botones{
+    display: flex;
+    justify-content: left;
+    gap: .5rem;
+}

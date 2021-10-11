@@ -77,7 +77,12 @@
     <main class="contenedor seccion">
         <h1>Agregar Caso</h1>
 
-        <a href="/admin/Casos/casos.php" class="boton boton-azul">Volver</a>
+        <div class="botones">
+        <a href="/admin/Casos/casos.php" class="boton-azul icono">
+                <ion-icon name="arrow-undo-outline" class="size3"></ion-icon>
+                Volver
+            </a>
+        </div>
         <?php foreach($errores as $error): ?>
             <div class="alerta error">
                 <?php  echo $error; ?>

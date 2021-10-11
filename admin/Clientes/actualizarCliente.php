@@ -185,7 +185,12 @@
 ?>
     <main class="contenedor seccion">
         <h1>Actualizar Cliente</h1>
-        <a href="/admin/Clientes/clientes.php" class="boton-azul">Volver</a>
+        <div class="botones">
+            <a href="/admin/Clientes/clientes.php" class="boton-azul icono">
+                <ion-icon name="arrow-undo-outline" class="size3"></ion-icon>
+                Volver
+            </a>
+        </div>
         
         <?php foreach($errores as $error): ?>
             <div class="alerta error">
@@ -274,13 +279,13 @@
             <fieldset>
                 <legend>Documentos</legend>
                 <label for="ine">INE</label>
-                <input type="file" name="ine" id="ine">
+                <input type="file" name="ine" id="ine" accept="application/pdf">
 
-                <label for="com">Comprobante de Domicilio</label>
-                <input type="file" name="com" id="com">
+                <label for="com">Comprobante de Domicilio</label >
+                <input type="file" name="com" id="com" accept="application/pdf">
 
                 <label for="acta">Acta de Nacimiento</label>
-                <input type="file" name="acta" id="acta">                
+                <input type="file" name="acta" id="acta"accept="application/pdf" >                
             </fieldset>
             
             <input type="submit" class="boton-azul">

@@ -72,10 +72,16 @@
             <p class="alerta exito">Caso Activado Correctamente</p>
         <?php endif;?>
 
-        <div class="acciones-casos">
-            <a href="/admin" class="boton-azul">Volver</a>
+        <div class="acciones-casos botones">
+            <a href="/admin/" class="boton-azul icono">
+                <ion-icon name="arrow-undo-outline" class="size3"></ion-icon>
+                Volver
+            </a>
             <a href="consultaIndividual.php" class="boton-azul">Consulta Individual</a>
-            <a href="agregarCaso.php" class="boton-azul">Agregar Caso</a>
+            <a href="agregarCaso.php" class="boton-azul icono">
+                <ion-icon name="add-circle-outline" class="size3"></ion-icon>     
+                Agregar Caso
+            </a>
         </div>
     </main>
     <!--Tabla Casos Activos-->

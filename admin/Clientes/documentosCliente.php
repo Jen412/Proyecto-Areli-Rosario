@@ -31,18 +31,23 @@
 ?>
     <main class="contenedor seccion">
         <h1>Documentos</h1>
-        <div class="acciones">
-            <a href="/admin/Clientes/clientes.php"  class="boton-azul">Volver</a>
+        <div class="acciones botones">
+            <a href="/admin/Clientes/clientes.php" class="boton-azul icono">
+                <ion-icon name="arrow-undo-outline" class="size3"></ion-icon>
+                Volver
+            </a>
         </div>
         <table class="documentos">
             <thead>
                 <tr>
+                    <th>Tipo de Documento</th>
                     <th>Nombre del Documento</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
+                    <td>Acta de Nacimiento</td>
                     <td><?php echo $doc['Doc_ActaN']?></td>
                     <td>
                         <form action="" method="POST" class="w-100">
@@ -52,7 +57,8 @@
                     </td>
                 </tr>
                 <tr>
-                <td><?php echo $doc['Doc_INE']?></td>
+                    <td>INE</td>
+                    <td><?php echo $doc['Doc_INE']?></td>
                     <td>
                         <form action="" method="POST" class="w-100">
                             <input type="hidden" name="nombreDoc" value="<?php echo$doc['Doc_INE'];?>">
@@ -61,6 +67,7 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Comprobante de Domicilio</td>
                     <td><?php echo $doc['Doc_ComDom']?></td>
                     <td>
                         <form action="" method="POST" class="w-100">

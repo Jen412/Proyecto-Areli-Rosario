@@ -102,7 +102,12 @@
     <main class="contenedor seccion">
         <h1>Actualizar Empleado</h1>
 
-        <a href="/admin/Empleados/empleados.php" class="boton boton-azul">Volver</a>
+        <div class="botones">
+            <a href="/admin/Empleados/empleados.php" class="boton-azul icono">
+                <ion-icon name="arrow-undo-outline" class="size3"></ion-icon>
+                Volver
+            </a>
+        </div>    
         <?php foreach($errores as $error): ?>
             <div class="alerta error">
                 <?php        echo $error; ?>

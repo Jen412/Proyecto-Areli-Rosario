@@ -105,6 +105,15 @@
         if (!$com['name']) {
             $errores[] = "Comprobante de Domicilio Obligatorio";
         }
+        if($ine['type'] !='application/pdf'){
+            $errores[] = "Solo son validos documentos PDF para la INE";
+        }
+        if($acta['type'] !='application/pdf'){
+            $errores[] = "Solo son validos documentos PDF para el Acta de Naciemiento";
+        }
+        if($com['type'] !='application/pdf'){
+            $errores[] = "Solo son validos documentos PDF para el Compronte de domicilio";
+        }
 
         //no hay errores
         if (empty($errores)) {
@@ -231,13 +240,13 @@
             <fieldset>
                 <legend>Documentos</legend>
                 <label for="ine">INE</label>
-                <input type="file" name="ine" id="ine">
+                <input type="file" accept="application/pdf" name="ine" id="ine">
 
                 <label for="com">Comprobante de Domicilio</label>
-                <input type="file" name="com" id="com">
+                <input type="file" accept="application/pdf" name="com" id="com">
 
                 <label for="acta">Acta de Nacimiento</label>
-                <input type="file" name="acta" id="acta">                
+                <input type="file" accept="application/pdf" name="acta" id="acta">                
             </fieldset>
             
             <input type="submit" class="boton-azul">

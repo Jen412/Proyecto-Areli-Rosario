@@ -46,9 +46,15 @@
             <p class="alerta exito">Documento Eliminado Correctamente</p>     
         <?php endif;?>
 
-        <div class="acciones">
-            <a href="/admin/Casos/agregarDocumento.php?id=<?php echo $id?>" class="boton-azul">Agregar Documento</a>
-            <a href="/admin/Casos/casos.php"  class="boton-azul">Volver</a>
+        <div class="acciones botones">
+            <a href="/admin/Casos/casos.php" class="boton-azul icono">
+                <ion-icon name="arrow-undo-outline" class="size3"></ion-icon>
+                Volver
+            </a>
+            <a href="/admin/Casos/agregarDocumento.php?id=<?php echo $id?>" class="boton-azul icono">
+                <ion-icon name="add-circle-outline" class="size3"></ion-icon> 
+                Agregar Documento
+            </a>
         </div>
         <table class="documentos">
             <thead>

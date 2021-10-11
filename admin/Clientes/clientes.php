@@ -59,8 +59,14 @@
         <?php endif;?>
 
         <div class="botones">
-            <a href="agregarCliente.php" class="boton-azul">Agregar Cliente</a>
-            <a href="/admin" class="boton-azul">Volver</a>
+            <a href="/admin" class="boton-azul icono">
+                <ion-icon name="arrow-undo-outline" class="size3"></ion-icon>
+                Volver
+            </a>
+            <a href="agregarCliente.php" class="boton-azul icono">
+                <ion-icon name="add-circle-outline" class="size3"></ion-icon>    
+                Agregar Cliente
+            </a>
         </div>
     </main>
 

@@ -20,13 +20,22 @@ $resultado = mysqli_query($db, $query);
         <h1>Administración</h1>
         <div class="contenedor admin">
             <div>
-                <a href="/admin/Casos/casos.php" class="boton-azul-m w-100">Casos</a>
+                <a href="/admin/Casos/casos.php" class="boton-azul-m w-100 icono">
+                    <ion-icon name="folder-outline"></ion-icon>
+                    Caso
+                </a>
             </div>
             <div>
-                <a href="/admin/Clientes/clientes.php" class="boton-azul-m w-100">Clientes</a>
+                <a href="/admin/Clientes/clientes.php" class="boton-azul-m w-100 icono">
+                    <ion-icon name="people-circle-outline"></ion-icon>
+                    Clientes
+                </a>
             </div>
             <div>
-                <a href="/admin/Empleados/empleados.php" class="boton-azul-m w-100">Empleados</a>
+                <a href="/admin/Empleados/empleados.php" class="boton-azul-m w-100 icono">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                    Empleados
+                </a>
             </div>
         </div>
 

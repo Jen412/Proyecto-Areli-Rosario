@@ -33,6 +33,9 @@
         if (!$nombreDocCaso) {
             $errores[] = 'Nombre Obligatorio';
         }
+        if($doc['type'] !='application/pdf'){
+            $errores[] = "Solo son validos documentos PDF";
+        }
 
         
         if (empty($errores)) {
@@ -57,7 +60,12 @@
 ?>
     <main class="contenedor seccion">
         <h1>Agregar Documento</h1>
-        <a href="/admin/Casos/documentosCaso.php?id=<?php echo $id?>" class="boton-azul">Volver</a>
+        <div class="botones">
+            <a href="/admin/Casos/documentosCaso.php?id=<?php echo $id?>"  class="boton-azul icono">
+                <ion-icon name="arrow-undo-outline" class="size3"></ion-icon>
+                Volver
+            </a>
+        </div>
 
         <?php foreach($errores as $error): ?>
             <div class="alerta error">
@@ -70,7 +78,7 @@
                 <label for="nomDoc">Nombre Documento</label>
                 <input type="text" name="nomDoc" id="nomDoc" value="<?php echo $nombreDocCaso;?>">    
                 <label for="doc">Documento</label>
-                <input type="file" name="doc" id="doc">
+                <input type="file" name="doc" accept="application/pdf" id="doc">
             </fieldset>
             <input type="submit" class="boton-azul">
         </form>
