@@ -90,9 +90,9 @@
     </main>
     <!--Tabla Casos Activos-->
     <h2>Casos Activos</h2>
-    <div class="tbl-header">
+    <div class=" table-wrapper ">
         <table cellpadding="0" cellspacing="0" border="0">
-            <thead>
+            <thead class="tbl-header">
                 <tr>
                     <th>Cliente</th>
                     <th>Abogado</th>
@@ -101,11 +101,7 @@
                     <th>Acciones</th>
                 </tr>
             </thead>
-        </table>
-    </div>
-    <div class="tbl-content">
-        <table cellpadding="0" cellspacing="0" border="0">
-            <tbody>
+            <tbody class="tbl-content">
                 <?php while($caso = mysqli_fetch_assoc($resultadoA)):?>
                 <tr>
                     <td><?php echo $caso['Nom'].' '. $caso['ApeP']?></td>
@@ -129,9 +125,9 @@
     </div>    
     <!--Tabla Casos Archivados-->
     <h2>Casos Archivados</h2>
-    <div class="tbl-header">
+    <div class=" table-wrapper ">
         <table cellpadding="0" cellspacing="0" border="0">
-            <thead>
+            <thead class="tbl-header">
                 <tr>
                     <th>Cliente</th>
                     <th>Abogado</th>
@@ -139,12 +135,8 @@
                     <th>Costo</th>
                     <th>Acciones</th>
                 </tr>
-            </thead>
-        </table>
-    </div>
-    <div class="tbl-content">
-        <table cellpadding="0" cellspacing="0" border="0">                
-            <tbody>
+            </thead>            
+            <tbody class="tbl-content">
                 <?php while($caso = mysqli_fetch_assoc($resultadoAr)):?>
                 <tr>
                     <td><?php echo $caso['Nom'].' '. $caso['ApeP']?></td>

@@ -41,37 +41,31 @@ $resultado = mysqli_query($db, $query);
 
 
     </main>
-    <div class="tabla">
-        <div class="tbl-header">
-            <table cellpadding="0" cellspacing="0" border="0">
-                <thead>
-                    <tr>
-                        <th>Cliente</th>
-                        <th>Juzgado</th>
-                        <th>Materia</th>
-                        <th>Costo</th>
-                        <th>Fecha</th>
-                        <th>Estatus</th>
-                    </tr> 
-                </thead>
-            </table>  
-        </div>      
-        <div class="tbl-content">
-            <table cellpadding="0" cellspacing="0" border="0">
-                <tbody>
-                    <?php while ($caso = mysqli_fetch_assoc($resultado)):?>
-                    <tr>
-                        <td><?php echo $caso['Nom'].' '.$caso['ApeP'].' '.$caso['Apem'];?></td>
-                        <td><?php echo $caso['Juzgado'];?></td>
-                        <td><?php echo $caso['Materia'];?></td>
-                        <td><?php echo '$'.$caso['Costo'];?></td>
-                        <td><?php echo $caso['DiaR'].'/'.$caso['MesR'].'/'.$caso['AnioR'];?></td>
-                        <td><?php echo $caso['Estatus'];?></td>
-                    </tr>
-                    <?php endwhile;?>
-                </tbody>
-            </table>
-        </div>
+    <div class="table-wrapper flex">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <thead class="tbl-header">
+                <tr>
+                    <th>Cliente</th>
+                    <th>Juzgado</th>
+                    <th>Materia</th>
+                    <th>Costo</th>
+                    <th>Fecha</th>
+                    <th>Estatus</th>
+                </tr> 
+            </thead>   
+            <tbody class="tbl-content">
+                <?php while ($caso = mysqli_fetch_assoc($resultado)):?>
+                <tr>
+                    <td><?php echo $caso['Nom'].' '.$caso['ApeP'].' '.$caso['Apem'];?></td>
+                    <td><?php echo $caso['Juzgado'];?></td>
+                    <td><?php echo $caso['Materia'];?></td>
+                    <td><?php echo '$'.$caso['Costo'];?></td>
+                    <td><?php echo $caso['DiaR'].'/'.$caso['MesR'].'/'.$caso['AnioR'];?></td>
+                    <td><?php echo $caso['Estatus'];?></td>
+                </tr>
+                <?php endwhile;?>
+            </tbody>
+        </table>
     </div>    
 <?php 
     inlcuirTemplate("footer");   

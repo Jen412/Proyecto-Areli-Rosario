@@ -50,9 +50,9 @@
             </a>
         </div>
     </main>    
-    <div class="tbl-header">
+    <div class="table-wrapper">
         <table cellpadding="0" cellspacing="0" border="0">
-            <thead>
+            <thead class="tbl-header">
                 <tr>
                     <th>Nombre</th>
                     <th>Ciudad</th>
@@ -64,11 +64,7 @@
                     <th>Acciones</th>
                 </tr>
             </thead>
-        </table>
-    </div>
-    <div class="tbl-content">
-        <table cellpadding="0" cellspacing="0" border="0">
-            <tbody>
+            <tbody  class="tbl-content">
                 <?php while ($empleado = mysqli_fetch_assoc($resultado)):?>
                 <tr>
                     <td><?php echo $empleado['Nom'] .' '.$empleado['ApeP'].' '.$empleado['ApeM'];?></td>

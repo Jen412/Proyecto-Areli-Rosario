@@ -56,19 +56,15 @@
                 Agregar Documento
             </a>
         </div>
-        <div class="tbl-header">
+        <div class="table-wrapper">
             <table cellpadding="0" cellspacing="0" border="0">
-                <thead>
+                <thead class="tbl-header">
                     <tr>
                         <th>Nombre del Documento</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
-            </table>
-        </div>
-        <div class="tbl-content">
-            <table cellpadding="0" cellspacing="0" border="0">    
-                <tbody>
+                <tbody class="tbl-content">
                     <?php while($doc = mysqli_fetch_assoc($resultado)):?>
                     <tr>
                         <td><?php echo $doc['Nombre_Doc']?></td>
