@@ -1,7 +1,7 @@
 <?php 
     require '../../includes/funciones.php';
     require '../../includes/config/database.php';
-    
+    $ban = false;
     $db = conectarDB();
     $resultadoAccion = $_GET['resultado'] ?? null;
     $id = $_GET['id'];
@@ -12,7 +12,7 @@
     }
     $query= "CALL consultaTodDocCaso('$id');";
     $resultado = mysqli_query($db, $query);
-
+    
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $idDoc = $_POST['id'];
         $nomDoc =$_POST['nombreDoc'];
@@ -56,29 +56,38 @@
                 Agregar Documento
             </a>
         </div>
-        <table class="documentos">
-            <thead>
-                <tr>
-                    <th>Nombre del Documento</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while($doc = mysqli_fetch_assoc($resultado)):?>
-                <tr>
-                    <td><?php echo $doc['Nombre_Doc']?></td>
-                    <td>
-                        <form action="" method="POST" class="w-100">
-                            <input type="hidden" name="id" value = "<?php echo $doc['Id_DocCaso'];?>">
-                            <input type="hidden" name="nombreDoc" value="<?php echo$doc['Nombre_Doc'];?>">
-                            <input type="submit" class="boton-rojo-block" value="Eliminar">
-                        </form>
-                        <a href="/DocumentosCaso/<?php echo $doc['URL_Doc'];?>" download="<?php echo $doc['URL_Doc'];?>" class="boton-verde-block">Descargar</a>
-                    </td>
-                </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                    <tr>
+                        <th>Nombre del Documento</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tbl-content">
+            <table cellpadding="0" cellspacing="0" border="0">    
+                <tbody>
+                    <?php while($doc = mysqli_fetch_assoc($resultado)):?>
+                    <tr>
+                        <td><?php echo $doc['Nombre_Doc']?></td>
+                        <td>
+                            <form action="" method="POST" class="w-100" id="formul<?php echo $doc['Id_DocCaso'];?>">
+                                <input type="hidden" name="id" value = "<?php echo $doc['Id_DocCaso'];?>">
+                                <input type="hidden" name="nombreDoc" value="<?php echo$doc['Nombre_Doc'];?>">
+                                <input type="button" name="eliminar" class="boton-rojo-block" value="Eliminar" onclick="confirmarEliminacion('#formul<?php echo $doc['Id_DocCaso'];?>');">
+                            </form>
+                            <a href="/DocumentosCaso/<?php echo $doc['URL_Doc'];?>" download="<?php echo $doc['URL_Doc'];?>" class="boton-verde-block descarga">
+                                <ion-icon name="cloud-download-outline" class="size3"></ion-icon>    
+                                Descargar
+                            </a>
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
     </main>
 
 <?php inlcuirTemplate("footer");   ?>

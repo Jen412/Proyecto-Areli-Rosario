@@ -29,6 +29,7 @@
 
 .boton-verde-block{
     @include boton($verde, block);
+    width: 100%;
 }
 
 ion-icon{
@@ -45,8 +46,20 @@ ion-icon.size3{
     gap: 1rem;
 }
 
-.botones{
+.descarga{
     display: flex;
-    justify-content: left;
-    gap: .5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.botones{
+    flex-direction: column;
+    @include tablet{
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        gap: .5rem;
+        margin-bottom: 1rem;
+    }
 }

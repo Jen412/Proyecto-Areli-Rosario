@@ -37,47 +37,62 @@
                 Volver
             </a>
         </div>
-        <table class="documentos">
-            <thead>
-                <tr>
-                    <th>Tipo de Documento</th>
-                    <th>Nombre del Documento</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Acta de Nacimiento</td>
-                    <td><?php echo $doc['Doc_ActaN']?></td>
-                    <td>
-                        <form action="" method="POST" class="w-100">
-                            <input type="hidden" name="nombreDoc" value="<?php echo$doc['Doc_ActaN'];?>">
-                        </form>
-                        <a href="/DocumentosCliente/<?php echo $doc['Doc_ActaN'];?>" download="<?php echo $doc['Doc_ActaN'];?>" class="boton-verde-block">Descargar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>INE</td>
-                    <td><?php echo $doc['Doc_INE']?></td>
-                    <td>
-                        <form action="" method="POST" class="w-100">
-                            <input type="hidden" name="nombreDoc" value="<?php echo$doc['Doc_INE'];?>">
-                        </form>
-                        <a href="/DocumentosCliente/<?php echo $doc['Doc_INE'];?>" download="<?php echo $doc['Doc_INE'];?>" class="boton-verde-block">Descargar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Comprobante de Domicilio</td>
-                    <td><?php echo $doc['Doc_ComDom']?></td>
-                    <td>
-                        <form action="" method="POST" class="w-100">
-                            <input type="hidden" name="nombreDoc" value="<?php echo$doc['Doc_ComDom'];?>">
-                        </form>
-                        <a href="/DocumentosCliente/<?php echo $doc['Doc_ComDom'];?>" download="<?php echo $doc['Doc_ComDom'];?>" class="boton-verde-block">Descargar</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                    <tr>
+                        <th>Tipo de Documento</th>
+                        <th>Nombre del Documento</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tbl-content">
+            <table cellpadding="0" cellspacing="0" border="0">  
+                <tbody>
+                    <tr>
+                        <td>Acta de Nacimiento</td>
+                        <td><?php echo $doc['Doc_ActaN']?></td>
+                        <td>
+                            <form action="" method="POST" class="w-100">
+                                <input type="hidden" name="nombreDoc" value="<?php echo$doc['Doc_ActaN'];?>">
+                            </form>
+                            <a href="/DocumentosCliente/<?php echo $doc['Doc_ActaN'];?>" download="<?php echo $doc['Doc_ActaN'];?>" class="boton-verde-block descarga">
+                                <ion-icon name="cloud-download-outline" class="size3"></ion-icon>    
+                                Descargar
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>INE</td>
+                        <td><?php echo $doc['Doc_INE']?></td>
+                        <td>
+                            <form action="" method="POST" class="w-100">
+                                <input type="hidden" name="nombreDoc" value="<?php echo$doc['Doc_INE'];?>">
+                            </form>
+                            <a href="/DocumentosCliente/<?php echo $doc['Doc_INE'];?>" download="<?php echo $doc['Doc_INE'];?>" class="boton-verde-block descarga">
+                                <ion-icon name="cloud-download-outline" class="size3"></ion-icon>    
+                                Descargar
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Comprobante de Domicilio</td>
+                        <td><?php echo $doc['Doc_ComDom']?></td>
+                        <td>
+                            <form action="" method="POST" class="w-100">
+                                <input type="hidden" name="nombreDoc" value="<?php echo$doc['Doc_ComDom'];?>">
+                            </form>
+                            <a href="/DocumentosCliente/<?php echo $doc['Doc_ComDom'];?>" download="<?php echo $doc['Doc_ComDom'];?>" class="boton-verde-block descarga">
+                                <ion-icon name="cloud-download-outline" class="size3"></ion-icon>    
+                                Descargar
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </main>
 
 <?php inlcuirTemplate("footer");   ?>

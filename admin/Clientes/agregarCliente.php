@@ -34,7 +34,6 @@
         $nombre= mysqli_real_escape_string($db, $_POST['nombre']);
         $apeP= mysqli_real_escape_string($db, $_POST['apellidoP']);
         $apeM= mysqli_real_escape_string($db, $_POST['apellidoM']);
-        $edad= mysqli_real_escape_string($db, $_POST['edad']);
         $sexo= mysqli_real_escape_string($db, $_POST['sexo']);
         $curp= mysqli_real_escape_string($db, $_POST['curp']);
         $ocupacion= mysqli_real_escape_string($db, $_POST['ocupacion']);
@@ -61,12 +60,6 @@
             $errores[] = "Apellidos Oligatorios";
         }
 
-        if (!$edad) {
-            $errores[] = "Edad Obligatoria";
-        }
-        if ($edad > 100 && $edad <18) {
-            $errores[] = "Edad no valida";
-        }
         if (!$sexo) {
             $errores[] = "Sexo Indefinido";
         }
@@ -121,6 +114,10 @@
             if (!is_dir($carpetaDocumentos)) {
                 mkdir($carpetaDocumentos);
             }
+            //Calculo de edad 
+            $fechaNacimiento = new DateTime($anio."-".$mes."-".$dia);
+            $hoy = new DateTime();
+            $edad = $hoy->diff($fechaNacimiento);
 
             $nombreIne = $ine['name'];
             $nombreActa = $acta['name'];
@@ -129,9 +126,10 @@
             move_uploaded_file($ine['tmp_name'], $carpetaDocumentos . $nombreIne);
             move_uploaded_file($acta['tmp_name'], $carpetaDocumentos . $nombreActa);
             move_uploaded_file($com['tmp_name'], $carpetaDocumentos . $nombreCom);
+            
         
             $query ="CALL agregarClientes('$nombre', '$apeP', '$apeM', '$ciudad', '$estado','$calle', '$numCasa', '$colonia', '$email',
-            '$telefono', '$edad', '$curp','$ocupacion', '$sexo', '$dia', '$mes', '$anio');";
+            '$telefono', '$edad->y', '$curp','$ocupacion', '$sexo', '$dia', '$mes', '$anio');";
             $resultado = mysqli_query($db, $query);
             $db = conectarDB();
             $query = "CALL consultaIdCliente('$nombre');";
@@ -164,20 +162,17 @@
                 <Legend>Datos Principales</Legend>
                 
                 <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Nombre" value="<?php echo $nombre;?>">
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre" onkeypress="return checkLetters(event)" value="<?php echo $nombre;?>">
 
                 <label for="apellidoP">Apellido Paterno</label>
-                <input type="text" id="apellidoP" name="apellidoP" placeholder="Apellido Paterno" value="<?php echo $apeP;?>">
+                <input type="text" id="apellidoP" name="apellidoP" placeholder="Apellido Paterno" onkeypress="return checkLetters(event)" value="<?php echo $apeP;?>">
                 
                 <label for="apellidoM">Apellido Materno</label>
-                <input type="text" id="apellidoM" name="apellidoM" placeholder="Apellido Materno" value="<?php echo $apeM;?>">
-
-                <label for="edad">Edad</label>
-                <input type="number" id="edad" name="edad" placeholder="Edad del cliente" min="18" max="100" value="<?php echo $edad;?>">
+                <input type="text" id="apellidoM" name="apellidoM" placeholder="Apellido Materno" onkeypress="return checkLetters(event)" value="<?php echo $apeM;?>">
 
                 <label for="sexo">Sexo</label>
                 <select name="sexo" id="sexo">
-                    <option value="" selected >--Seleccione--</option>
+                    <option value="" disabled selected >--Seleccione--</option>
                         <option value="M" <?php $r = ($sexo == "M") ? 'selected' : ''; echo $r;?>>Masculino</option>
                         <option value="F" <?php $r = ($sexo == "F") ? 'selected' : ''; echo $r;?>>Femenino</option>
                 </select>
@@ -186,7 +181,7 @@
                 <input type="text" id="curp" name="curp" placeholder="CURP del cliente" value="<?php echo $curp;?>">
 
                 <label for="ocupacion">Ocupación</label>
-                <input type="text" id="ocupacion" name="ocupacion" placeholder="Ocupación del cliente ej: Arquitecto" value="<?php echo $ocupacion;?>">
+                <input type="text" id="ocupacion" name="ocupacion" placeholder="Ocupación del cliente ej: Arquitecto" onkeypress="return checkLetters(event)" value="<?php echo $ocupacion;?>">
             </fieldset>
 
             <fieldset>
@@ -212,20 +207,26 @@
 
             <fieldset>
                 <legend>Domicilio</legend>
-                <label for="ciudad">Ciudad</label>
-                <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad Ej: CD Guzman" value="<?php echo $ciudad;?>">
+                <label for="cp">Codigo Postal</label>
+                <div class="cp">
+                    <input  type="number" id="codigoP" name="cp" placeholder="Codigo Postal Ej: 49000">
+                    <button type="button" class="boton-azul" id="cp">Comprobar</button>
+                </div>
 
                 <label for="estado">Estado</label>
                 <input type="text" id="estado" name="estado" placeholder="Estado Ej: Jalisco" value="<?php echo $estado;?>">
+
+                <label for="ciudad">Ciudad</label>
+                <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad Ej: CD Guzman" value="<?php echo $ciudad;?>">
+
+                <label for="colonia">Colonia</label>
+                <input type="text" id="colonia" name="colonia" placeholder="Colonia Ej: Providencia" value="<?php echo $colonia;?>">
 
                 <label for="calle">Calle</label>
                 <input type="text" id="calle" name="calle" placeholder="Calle Ej: Donato Guerra" value="<?php echo $calle;?>">
 
                 <label for="numeroCasa">Numero de Casa</label>
                 <input type="number" id="numeroCasa" name="numeroCasa" placeholder="Numero de casa" value="<?php echo $numCasa;?>">
-
-                <label for="colonia">Colonia</label>
-                <input type="text" id="colonia" name="colonia" placeholder="Colonia Ej: Providencia" value="<?php echo $colonia;?>">
             </fieldset>    
 
             <fieldset>

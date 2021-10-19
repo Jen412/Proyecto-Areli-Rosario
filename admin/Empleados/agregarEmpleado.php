@@ -116,7 +116,7 @@
                 <input type="text" id="apellidoM" name="apellidoM" placeholder="Apellido Materno" value="<?php echo $apeM;?>">
 
                 <label for="edad">Edad</label>
-                <input type="number" id="edad" name="edad" placeholder="Edad del cliente" min="18" max="100" value="<?php echo $edad;?>">
+                <input type="number" id="edad" name="edad" placeholder="Edad del Empleado" min="18" max="100" value="<?php echo $edad;?>">
 
                 <label for="sexo">Sexo</label>
                 <select name="sexo" id="sexo">
@@ -126,34 +126,40 @@
                 </select>
 
                 <label for="curp">CURP</label>
-                <input type="text" id="curp" name="curp" placeholder="CURP del cliente" value="<?php echo $curp;?>">
+                <input type="text" id="curp" name="curp" placeholder="CURP del Empleado" value="<?php echo $curp;?>">
 
                 <label for="especialidad">Especialidad</label>
-                <input type="text" id="especialidad" name="especialidad" placeholder="Ocupación del empleado" value="<?php echo $especialidad?>">
+                <input type="text" id="especialidad" name="especialidad" placeholder="Especialidad del Empleado" value="<?php echo $especialidad?>">
             </fieldset>
 
             <fieldset>
             <legend>Domicilio</legend>
-                <label for="ciudad">Ciudad</label>
-                <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad Ej: CD Guzman" value="<?php echo $ciudad;?>">
+                <label for="cp">Codigo Postal</label>
+                <div class="cp">
+                    <input  type="number" id="codigoP" name="cp" placeholder="Codigo Postal Ej: 49000">
+                    <button type="button" class="boton-azul" id="cp">Comprobar</button>
+                </div>
 
                 <label for="estado">Estado</label>
                 <input type="text" id="estado" name="estado" placeholder="Estado Ej: Jalisco" value="<?php echo $estado;?>">
+                
+                <label for="ciudad">Ciudad</label>
+                <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad Ej: CD Guzman" value="<?php echo $ciudad;?>">
+
+                <label for="colonia">Colonia</label>
+                <input type="text" id="colonia" name="colonia" placeholder="Colonia Ej: Providencia" value="<?php echo $colonia;?>">
 
                 <label for="calle">Calle</label>
                 <input type="text" id="calle" name="calle" placeholder="Calle Ej: Donato Guerra" value="<?php echo $calle;?>">
 
                 <label for="numeroCasa">Numero de Casa</label>
                 <input type="number" id="numeroCasa" name="numeroCasa" placeholder="Numero de casa" value="<?php echo $numCasa;?>">
-
-                <label for="colonia">Colonia</label>
-                <input type="text" id="colonia" name="colonia" placeholder="Colonia Ej: Providencia" value="<?php echo $colonia;?>">
             </fieldset>    
 
             <fieldset>
             <legend>Contacto</legend>
                 <label for="telefono">Telefono</label>
-                <input type="number" id="telefono" name="telefono" placeholder="Telefono del cliente" maxlength="10" minlength="10" value="<?php echo $telefono;?>"> 
+                <input type="number" id="telefono" name="telefono" placeholder="Telefono del Empleado" maxlength="10" minlength="10" value="<?php echo $telefono;?>"> 
             </Fieldset> 
             <input type="submit" class="boton-azul">
         </form>

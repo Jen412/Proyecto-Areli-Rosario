@@ -15,7 +15,12 @@
     }
 }
 .admin{
-    @include grid(3,5rem);
+    @include tablet{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+    }
 }
 
 table.casos{

@@ -42,3 +42,15 @@
         width: auto;
     }
 }
+
+.cp{
+    display: flex; 
+    justify-content: center;
+    align-items: baseline;
+    gap: 1rem;
+    
+
+    button{
+        margin-top: 0;
+    }
+}

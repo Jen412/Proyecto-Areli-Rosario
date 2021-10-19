@@ -49,7 +49,6 @@
         $nombre= mysqli_real_escape_string($db, $_POST['nombre']);
         $apeP= mysqli_real_escape_string($db, $_POST['apellidoP']);
         $apeM= mysqli_real_escape_string($db, $_POST['apellidoM']);
-        $edad= mysqli_real_escape_string($db, $_POST['edad']);
         $sexo= mysqli_real_escape_string($db, $_POST['sexo']);
         $curp= mysqli_real_escape_string($db, $_POST['curp']);
         $ocupacion= mysqli_real_escape_string($db, $_POST['ocupacion']);
@@ -76,12 +75,6 @@
             $errores[] = "Apellidos Oligatorios";
         }
 
-        if (!$edad) {
-            $errores[] = "Edad Obligatoria";
-        }
-        if ($edad > 100 && $edad <18) {
-            $errores[] = "Edad no valida";
-        }
         if (!$sexo) {
             $errores[] = "Sexo Indefinido";
         }
@@ -125,6 +118,10 @@
             $nombreActa = "";
             $nombreCom = "";
 
+            //Calculo de edad 
+            $fechaNacimiento = new DateTime($anio."-".$mes."-".$dia);
+            $hoy = new DateTime();
+            $edad = $hoy->diff($fechaNacimiento);
             
             if ($ine['name']) {
                 //Elimina el archivo de la Carpeta
@@ -166,7 +163,7 @@
             //Actualiza tabla clientes
             $db = conectarDB();
             $query = "CALL modificarClientes('$nombre', '$apeP', '$apeM', '$ciudad', '$estado','$calle', '$numCasa', '$colonia', '$email',
-            '$telefono', '$edad', '$curp','$ocupacion', '$sexo', '$dia', '$mes', '$anio', '$id');";
+            '$telefono', '$edad->y', '$curp','$ocupacion', '$sexo', '$dia', '$mes', '$anio', '$id');";
             $resultado = mysqli_query($db, $query);
             //Actualiza tabla docClientes
             $db = conectarDB();
@@ -210,9 +207,6 @@
                 
                 <label for="apellidoM">Apellido Materno</label>
                 <input type="text" id="apellidoM" name="apellidoM" placeholder="Apellido Materno" value="<?php echo $apeM;?>">
-
-                <label for="edad">Edad</label>
-                <input type="number" id="edad" name="edad" placeholder="Edad del cliente" min="18" max="100" value="<?php echo $edad;?>">
 
                 <label for="sexo">Sexo</label>
                 <select name="sexo" id="sexo">

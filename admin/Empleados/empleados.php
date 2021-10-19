@@ -17,9 +17,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id = $_POST['id'];
         $id = filter_var($id, FILTER_VALIDATE_INT);
-    
         if($id){
-            //Archiva Caso
             $db = conectarDB();
             $query = "CALL eliminarEmpleado('$id')";
             $resultadoE = mysqli_query($db, $query);
@@ -52,40 +50,45 @@
             </a>
         </div>
     </main>    
-    <table class="clientes">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Ciudad</th>
-                <th>Estado</th>
-                <th>Domicilio</th>
-                <th>Telefono</th>
-                <th>CURP</th>
-                <th>Especialidad</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <?php while ($empleado = mysqli_fetch_assoc($resultado)):?>
-            <tr>
-                <td><?php echo $empleado['Nom'] .' '.$empleado['ApeP'].' '.$empleado['ApeM'];?></td>
-                <td><?php echo $empleado['Ciudad'];?></td>
-                <td><?php echo $empleado['Estado'];?></td>
-                <td><?php echo $empleado['Calle'].' '.'#'.$empleado['NumCasa'].' '.$empleado['Colonia'];?></td>
-                <td><?php echo $empleado['Telefono']?></td>
-                <td><?php echo $empleado['CURP']?></td>
-                <td><?php echo $empleado['Especialidad']?></td>
-                <td>
-                    <form action="" method="POST" class="w-100">
-                        <input type="hidden" name="id" value = "<?php echo $empleado['Id_NoEmpleado'];?>">
-                        <input type="submit" class="boton-rojo-block" value="Eliminar">
-                    </form>
-                    <a href="/admin/Empleados/actualizarEmpleados.php?id=<?php echo $empleado['Id_NoEmpleado'];?>" class="boton-verde-block" >Actualizar</a>
-                </td>
-            </tr>
-            <?php endwhile;?>
-        </tbody>
-    </table>
+    <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Ciudad</th>
+                    <th>Estado</th>
+                    <th>Domicilio</th>
+                    <th>Telefono</th>
+                    <th>CURP</th>
+                    <th>Especialidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <?php while ($empleado = mysqli_fetch_assoc($resultado)):?>
+                <tr>
+                    <td><?php echo $empleado['Nom'] .' '.$empleado['ApeP'].' '.$empleado['ApeM'];?></td>
+                    <td><?php echo $empleado['Ciudad'];?></td>
+                    <td><?php echo $empleado['Estado'];?></td>
+                    <td><?php echo $empleado['Calle'].' '.'#'.$empleado['NumCasa'].' '.$empleado['Colonia'];?></td>
+                    <td><?php echo $empleado['Telefono']?></td>
+                    <td><?php echo $empleado['CURP']?></td>
+                    <td><?php echo $empleado['Especialidad']?></td>
+                    <td>
+                        <form action="" method="POST" class="w-100" id="forme<?php echo $empleado['Id_NoEmpleado'];?>">
+                            <input type="hidden" name="id" value = "<?php echo $empleado['Id_NoEmpleado'];?>">
+                            <input type="button" class="boton-rojo-block" value="Eliminar" onclick="confirmarEliminacion('#forme<?php echo $empleado['Id_NoEmpleado'];?>');">
+                        </form>
+                        <a href="/admin/Empleados/actualizarEmpleados.php?id=<?php echo $empleado['Id_NoEmpleado'];?>" class="boton-verde-block" >Actualizar</a>
+                    </td>
+                </tr>
+                <?php endwhile;?>
+            </tbody>
+        </table>
+    </div>
 
 <?php inlcuirTemplate('footer');  ?>
